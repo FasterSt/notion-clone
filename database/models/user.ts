@@ -1,3 +1,5 @@
+import { DatabaseManager } from "@/database/base";
+
 export interface User {
     id: number;
     name: string;

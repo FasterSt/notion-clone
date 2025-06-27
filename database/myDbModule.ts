@@ -1,4 +1,4 @@
-import { DatabaseManager } from './base';
+import { DatabaseManager } from '@/database/base';
 
 // Función para inicializar el esquema de la base de datos
 export const initializeDatabase = async (): Promise<void> => {
