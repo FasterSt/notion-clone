@@ -16,8 +16,8 @@ export interface NotionFileDb {
     panrentFile: NotionFileDb | null; // Parent file object, if any
     subFiles: NotionFileDb[]; // Array of sub-files
     file_order: number; // Order of the file in the list
-    createdAt: string; // Creation date
-    updatedAt: string; // Last update date
+    createdAt?: string; // Creation date
+    updatedAt?: string; // Last update date
 }
 
 export type NotionFile = Omit<NotionFileDb, 'id'>;
@@ -65,7 +65,7 @@ export async function createNotionFile(notionFile: NotionFile): Promise<void> {
         );
         console.log("Notion file created successfully");
         const result = await db.getAllAsync(`SELECT name FROM sqlite_master WHERE type='table'`);
-        console.log("Tables in the database:", result.map(row => row.name));
+        console.log("Tables in the database:", result.map(row => row));
     } catch (error) {
         console.error('Error creating Notion file:', error);
         throw error;
@@ -79,7 +79,7 @@ export async function getNotionFiles(): Promise<NotionFileDb[]> {
         await initNotionFilesTable(db);
         const result = await db.getAllAsync<NotionFileDb>(`SELECT * FROM notion_files`);
         const tables = await db.getAllAsync(`SELECT name FROM sqlite_master WHERE type='table'`);
-        console.log("Tables in the database:", tables.map(row => row.name));
+        console.log("Tables in the database:", tables.map(row => row));
         return result;
     } catch (error) {
         console.error('Error fetching Notion files:', error);

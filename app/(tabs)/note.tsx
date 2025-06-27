@@ -5,7 +5,7 @@ import {
   deleteNotionFile,
   getNotionFiles,
   NotionFile,
-} from "@/database/models/notas";
+} from "@/database/models/notes";
 import { Button } from "react-native";
 
 const createNewNote = async () => {
@@ -30,8 +30,6 @@ const createNewNote = async () => {
     authorId: 1, // Assuming a default author ID
     parentFileId: null,
     file_order: 0,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
   };
   await createNotionFile(notionFile);
   // Placeholder function to simulate note creation
@@ -50,7 +48,7 @@ const showNotes = async () => {
 const deleteNotes = async () => {
   // Placeholder function to simulate deleting notes
   console.log("Deleting notes...");
-  await deleteNotionFile(3);
+  await deleteNotionFile(1);
   // Here you would typically call a function to delete the notes from your database or state
 };
 
