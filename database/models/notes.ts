@@ -1,17 +1,17 @@
 import { SQLiteDatabase } from "expo-sqlite";
 import { DatabaseManager } from "../base";
-import { User } from "./user";
+import { UserDb } from "./user";
 
 export interface NotionFileDb {
     id: number;
-    coverPhoto: string; // URL to the cover photo
-    icon: string; // URL to the icon
+    coverPhoto: string | null; // URL to the cover photo
+    icon: string | null; // URL to the icon
     title: string; // Title of the file
     description: string; // Description of the file
     content: string; // Content of the file, could be text or HTML
     type: string; // Type of the file, e.g., 'document', 'spreadsheet'
     authorId: number; // ID of the author
-    author: User; // Author object
+    author: UserDb; // Author object
     parentFileId: number | null; // ID of the parent file, if any
     panrentFile: NotionFileDb | null; // Parent file object, if any
     subFiles: NotionFileDb[]; // Array of sub-files
